@@ -18,7 +18,6 @@ function removeUsers(i, j){
     console.log(db)
 }
 
-
 //exportando as funções
 module.exports = {
     createUser,
