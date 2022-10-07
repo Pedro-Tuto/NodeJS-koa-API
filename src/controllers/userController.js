@@ -1,5 +1,5 @@
 const db = require('../database/database')
-db.createUser("Gabigolmes")
+db.createUser("Fulano")
 
 //criando uma função para listar usuários e passar como parâmetro na rota
 async function listUsers(ctx){

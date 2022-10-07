@@ -23,6 +23,7 @@
   "homepage": "https://bitbucket.org/developmentOneZero/fileteste#readme",
   "dependencies": {
     "koa": "^2.13.4",
+    "koa-json": "^2.0.2",
     "koa-router": "^9.4.0"
   },
   "devDependencies": {
