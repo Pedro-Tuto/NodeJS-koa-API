@@ -1,11 +1,12 @@
 const db = require("../database/database");
 
-//criando uma função para listar usuários e passar como parâmetro na rota
+//função para listar usuários e passar como parâmetro na rota
 async function listUsers(ctx) {
   ctx.status = 200;
   ctx.body = { rows: db.listUsers() };
 }
 
+//função para pegar um usuário específico
 async function getUser(ctx) {
   const nome = ctx.params.nome;
   const user = db.getUser(nome);
@@ -18,7 +19,7 @@ async function getUser(ctx) {
   }
 }
 
-//criando uma função para adicionar usuários e passar como parâmetro na rota
+//função para adicionar usuários e passar como parâmetro na rota
 async function createUser(ctx) {
   const user = ctx.request.body;
   const success = db.createUser(user);
@@ -31,7 +32,7 @@ async function createUser(ctx) {
   }
 }
 
-//criando uma função para deletar usuários e passar como parâmetro na rota
+//função para deletar usuários e passar como parâmetro na rota
 async function deleteUser(ctx) {
   const nome = ctx.params.nome;
   const success = db.deleteUser(nome);
@@ -44,6 +45,7 @@ async function deleteUser(ctx) {
   }
 }
 
+//função para atualizar um usuário existente
 async function updateUser(ctx) {
   const nome = ctx.params.nome;
   const user = ctx.request.body;
@@ -57,7 +59,7 @@ async function updateUser(ctx) {
   }
 }
 
-//criando um export para as funções
+//exportando as funções
 module.exports = {
   listUsers,
   createUser,

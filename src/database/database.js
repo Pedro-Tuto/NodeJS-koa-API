@@ -1,4 +1,4 @@
-//importando um validador para e-mail
+//validador para e-mail
 var validator = require("email-validator");
 
 //lista para receber os dados
@@ -18,7 +18,7 @@ function validateUser(user) {
   }
 }
 
-//criando uma função para adicionar novo usuário
+//função para adicionar novo usuário
 function createUser(user) {
   if (validateUser(user)) {
     db.push(user);
@@ -28,11 +28,12 @@ function createUser(user) {
   }
 }
 
-//criando uma função para retornar a lista de usuários adicionados
+//função para retornar a lista de usuários adicionados
 function listUsers() {
   return db;
 }
 
+//função para pegar um usuário específico
 function getUser(nome) {
   const index = db.findIndex((u) => u.nome === nome);
   if (index >= 0) {
@@ -41,7 +42,7 @@ function getUser(nome) {
     return null;
   }
 }
-//criando uma função para remover um usuário da lista
+//função para remover um usuário da lista
 function deleteUser(nome) {
   const index = db.findIndex((u) => u.nome === nome);
   if (index >= 0) {
@@ -52,7 +53,7 @@ function deleteUser(nome) {
   }
 }
 
-//criando uma função para atualizar um usuário da lista
+//função para atualizar um usuário da lista
 function updateUser(nome, user) {
   const index = db.findIndex((u) => u.nome === nome);
   if (index >= 0 && validateUser(user)) {
