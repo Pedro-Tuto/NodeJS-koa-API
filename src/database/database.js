@@ -1,9 +1,10 @@
 //importando um validador para e-mail
 var validator = require("email-validator");
 
-//inicializando uma lista para receber os dados
+//lista para receber os dados
 const db = [];
 
+//valida um usuário para ter certeza que os atributos existem e são válidos
 function validateUser(user) {
   if (
     typeof user.nome === "string" &&
@@ -34,7 +35,7 @@ function listUsers() {
 
 //criando uma função para remover um usuário da lista
 function deleteUser(nome) {
-  const index = db.findIndex((user) => user.nome === nome);
+  const index = db.findIndex((u) => u.nome === nome);
   if (index >= 0) {
     db.splice(index, 1);
     console.log(db);
@@ -45,10 +46,15 @@ function deleteUser(nome) {
 }
 
 //criando uma função para atualizar um usuário da lista
-
-function updateUser(i, j) {
-  db.fill(i, j);
-  console.log(db);
+function updateUser(nome, user) {
+  const index = db.findIndex((u) => u.nome === nome);
+  if (index >= 0 && validateUser(user)) {
+    db.splice(index, 1, user);
+    console.log(db);
+    return true;
+  } else {
+    return false;
+  }
 }
 
 //exportando as funções

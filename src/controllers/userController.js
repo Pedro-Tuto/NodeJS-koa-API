@@ -9,8 +9,8 @@ async function listUsers(ctx) {
 
 //criando uma função para adicionar usuários e passar como parâmetro na rota
 async function createUser(ctx) {
-  const body = ctx.request.body;
-  const success = db.createUser(body);
+  const user = ctx.request.body;
+  const success = db.createUser(user);
   if (success) {
     ctx.status = 200;
     ctx.body = {};
@@ -33,9 +33,23 @@ async function deleteUser(ctx) {
   }
 }
 
+async function updateUser(ctx) {
+  const nome = ctx.params.nome;
+  const user = ctx.request.body;
+  const success = db.updateUser(nome, user);
+  if (success) {
+    ctx.status = 200;
+    ctx.body = {};
+  } else {
+    ctx.status = 400;
+    ctx.body = { error: "Não foi possível atualizar usuário" };
+  }
+}
+
 //criando um export para as funções
 module.exports = {
   listUsers,
   createUser,
   deleteUser,
+  updateUser,
 };
