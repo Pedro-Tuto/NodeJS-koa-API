@@ -32,7 +32,8 @@ router.get('/', async (ctx) => {
 
 //As rotas devem ficar em arquivos separados, /src/controllers/userController.js por exemplo
 router.get('/users', userController.listUsers);
-router.post('/addUsers', userController.createUsers);
+router.post('/users', userController.createUser);
+router.delete('/users/:nome', userController.deleteUser);
 
 koa
   .use(router.routes())
