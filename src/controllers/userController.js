@@ -31,7 +31,6 @@ async function deleteUser(ctx){
         ctx.status = 404
         ctx.body = {error: "Não foi possível deletar usuário"}
     }
-
 }
 
 //criando um export para as funções

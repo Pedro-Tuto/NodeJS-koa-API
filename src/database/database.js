@@ -4,9 +4,17 @@ var validator = require("email-validator");
 //inicializando uma lista para receber os dados
 const db = []
 
+function validateUser(user){
+    if(typeof(user.nome) === "string" && typeof(user.idade) === "number" && validator.validate(user.email)){
+        return true
+    }else{
+        return false
+    }
+}
+
 //criando uma função para adicionar novo usuário
 function createUser(user){
-    if(typeof(user.nome) === "string" && typeof(user.idade) === "number" && validator.validate(user.email)){
+    if(validateUser(user)){
         db.push(user)
         console.log(db)
         return true
