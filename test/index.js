@@ -85,7 +85,7 @@ describe("Testes da aplicaçao", () => {
       });
   });
   //...adicionar pelo menos mais 5 usuarios. se adicionar usuario menor de idade, deve dar erro. Ps: não criar o usuario naoExiste
-  
+
   it("deveria criar usuario 2", function (done) {
     chai
       .request(app)
@@ -187,9 +187,10 @@ describe("Testes da aplicaçao", () => {
       .request(app)
       .get("/users/naoExiste")
       .end(function (err, res) {
-        expect(err.response.body.error).to.be.equal("User not found"); //possivelmente forma errada de verificar a mensagem de erro
         expect(res).to.have.status(404);
-        expect(res.body).to.be.jsonSchema(userSchema);
+        expect(res.body.error).to.be.equal(
+          "Não foi possível encontrar este usuário"
+        ); //possivelmente forma errada de verificar a mensagem de erro
         done();
       });
   });
@@ -213,7 +214,6 @@ describe("Testes da aplicaçao", () => {
       .end(function (err, res) {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
-        expect(res.body).to.be.jsonSchema(userSchema);
         done();
       });
   });
@@ -224,20 +224,19 @@ describe("Testes da aplicaçao", () => {
       .get("/users/raupp")
       .end(function (err, res) {
         expect(err).to.be.null;
-        expect(res).to.have.status(200);
-        expect(res.body).to.be.jsonSchema(userSchema);
+        expect(res).to.have.status(404);
         done();
       });
   });
 
-  it("deveria ser uma lista com pelomenos 5 usuarios", function (done) {
+  it("deveria ser uma lista com pelo menos 5 usuarios", function (done) {
     chai
       .request(app)
       .get("/users")
       .end(function (err, res) {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
-        expect(res.body.total).to.be.at.least(5);
+        expect(res.body.rows).to.have.lengthOf(5);
         done();
       });
   });

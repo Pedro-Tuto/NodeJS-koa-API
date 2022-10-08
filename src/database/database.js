@@ -22,7 +22,6 @@ function validateUser(user) {
 function createUser(user) {
   if (validateUser(user)) {
     db.push(user);
-    console.log(db);
     return true;
   } else {
     return false;
@@ -47,7 +46,6 @@ function deleteUser(nome) {
   const index = db.findIndex((u) => u.nome === nome);
   if (index >= 0) {
     db.splice(index, 1);
-    console.log(db);
     return true;
   } else {
     return false;
@@ -59,7 +57,6 @@ function updateUser(nome, user) {
   const index = db.findIndex((u) => u.nome === nome);
   if (index >= 0 && validateUser(user)) {
     db.splice(index, 1, user);
-    console.log(db);
     return true;
   } else {
     return false;
