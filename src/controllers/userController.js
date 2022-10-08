@@ -24,7 +24,7 @@ async function createUser(ctx) {
   const user = ctx.request.body;
   const success = db.createUser(user);
   if (success) {
-    ctx.status = 200;
+    ctx.status = 201;
     ctx.body = {};
   } else {
     ctx.status = 400;

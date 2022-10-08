@@ -76,7 +76,7 @@ describe("Testes da aplicaçao", () => {
   it("deveria criar o usuario raupp", function (done) {
     chai
       .request(app)
-      .post("/user")
+      .post("/users")
       .send({ nome: "raupp", email: "jose.raupp@devoz.com.br", idade: 35 })
       .end(function (err, res) {
         expect(err).to.be.null;
@@ -85,11 +85,107 @@ describe("Testes da aplicaçao", () => {
       });
   });
   //...adicionar pelo menos mais 5 usuarios. se adicionar usuario menor de idade, deve dar erro. Ps: não criar o usuario naoExiste
+  
+  it("deveria criar usuario 2", function (done) {
+    chai
+      .request(app)
+      .post("/users")
+      .send({ nome: "winicius", email: "wini124345464@bol.com", idade: 27 })
+      .end(function (err, res) {
+        expect(err).to.be.null;
+        expect(res).to.have.status(201);
+        done();
+      });
+  });
+
+  it("deveria criar usuario 3", function (done) {
+    chai
+      .request(app)
+      .post("/users")
+      .send({ nome: "gabriel", email: "gabrielO@hotmail.com", idade: 25 })
+      .end(function (err, res) {
+        expect(err).to.be.null;
+        expect(res).to.have.status(201);
+        done();
+      });
+  });
+
+  it("deveria criar usuario 4", function (done) {
+    chai
+      .request(app)
+      .post("/users")
+      .send({ nome: "gabrielgomes", email: "notmegabriel@riot.com", idade: 30 })
+      .end(function (err, res) {
+        expect(err).to.be.null;
+        expect(res).to.have.status(201);
+        done();
+      });
+  });
+
+  it("deveria criar usuario 5", function (done) {
+    chai
+      .request(app)
+      .post("/users")
+      .send({ nome: "arthur", email: "arbochelli@ubuntu.com", idade: 24 })
+      .end(function (err, res) {
+        expect(err).to.be.null;
+        expect(res).to.have.status(201);
+        done();
+      });
+  });
+
+  it("deveria criar usuario 6", function (done) {
+    chai
+      .request(app)
+      .post("/users")
+      .send({ nome: "eduardo", email: "edu7@gmail.com", idade: 46 })
+      .end(function (err, res) {
+        expect(err).to.be.null;
+        expect(res).to.have.status(201);
+        done();
+      });
+  });
+
+  it("usuario menor de idade", function (done) {
+    chai
+      .request(app)
+      .post("/users")
+      .send({ nome: "joao", email: "joaozinho@gmail.com", idade: 12 })
+      .end(function (err, res) {
+        expect(err).to.be.null;
+        expect(res).to.have.status(400);
+        done();
+      });
+  });
+
+  it("usuario com email inválido", function (done) {
+    chai
+      .request(app)
+      .post("/users")
+      .send({ nome: "heitor", email: "etobryahoo.com", idade: 28 })
+      .end(function (err, res) {
+        expect(err).to.be.null;
+        expect(res).to.have.status(400);
+        done();
+      });
+  });
+
+  it("usuario com nome inválido", function (done) {
+    chai
+      .request(app)
+      .post("/users")
+      .send({ nome: 45, email: "eu45@yahoo.com", idade: 45 })
+      .end(function (err, res) {
+        expect(err).to.be.null;
+        expect(res).to.have.status(400);
+        done();
+      });
+  });
 
   it("o usuario naoExiste não existe no sistema", function (done) {
     chai
       .request(app)
-      .get("/user/naoExiste")
+      .get("/users/naoExiste")
       .end(function (err, res) {
         expect(err.response.body.error).to.be.equal("User not found"); //possivelmente forma errada de verificar a mensagem de erro
         expect(res).to.have.status(404);
@@ -101,7 +197,7 @@ describe("Testes da aplicaçao", () => {
   it("o usuario raupp existe e é valido", function (done) {
     chai
       .request(app)
-      .get("/user/raupp")
+      .get("/users/raupp")
       .end(function (err, res) {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
@@ -113,7 +209,7 @@ describe("Testes da aplicaçao", () => {
   it("deveria excluir o usuario raupp", function (done) {
     chai
       .request(app)
-      .delete("/user/raupp")
+      .delete("/users/raupp")
       .end(function (err, res) {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
@@ -125,7 +221,7 @@ describe("Testes da aplicaçao", () => {
   it("o usuario raupp não deve existir mais no sistema", function (done) {
     chai
       .request(app)
-      .get("/user/raupp")
+      .get("/users/raupp")
       .end(function (err, res) {
         expect(err).to.be.null;
         expect(res).to.have.status(200);

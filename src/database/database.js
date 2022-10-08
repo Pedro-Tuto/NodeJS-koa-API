@@ -9,7 +9,8 @@ function validateUser(user) {
   if (
     typeof user.nome === "string" &&
     typeof user.idade === "number" &&
-    validator.validate(user.email)
+    validator.validate(user.email) &&
+    user.idade >= 18
   ) {
     return true;
   } else {
