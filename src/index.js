@@ -16,11 +16,14 @@ const userController = require('./controllers/userController')
 //inicializando o koa-json
 const json = require('koa-json')
 
+const bodyparser = require('koa-bodyparser')
+
 const koa = new Koa();
 const router = new Router();
 
-//middleware para tratamento json
-router.use(json())
+//middleware para tratamento json e de body
+koa.use(json())
+koa.use(bodyparser())
 
 //rota simples pra testar se o servidor está online
 router.get('/', async (ctx) => {

@@ -12,6 +12,7 @@ async function listUsers(ctx){
 async function createUsers(ctx){
     console.log(ctx)
     ctx.status = 200;
+    console.log(ctx.req.body)
     const body = ctx.request.body
     db.createUser(body)
 }

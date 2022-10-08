@@ -18,10 +18,18 @@ function removeUsers(i, j){
     console.log(db)
 }
 
+//criando uma função para atualizar um usuário da lista
+
+function updateUsers(i, j){
+    db.fill(i,j)
+    console.log(db)
+}
+
 //exportando as funções
 module.exports = {
     createUser,
     listUsers,
     removeUsers,
+    updateUsers,
 
 }
