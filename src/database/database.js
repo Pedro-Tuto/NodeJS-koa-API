@@ -33,6 +33,14 @@ function listUsers() {
   return db;
 }
 
+function getUser(nome) {
+  const index = db.findIndex((u) => u.nome === nome);
+  if (index >= 0) {
+    return db[index];
+  } else {
+    return null;
+  }
+}
 //criando uma função para remover um usuário da lista
 function deleteUser(nome) {
   const index = db.findIndex((u) => u.nome === nome);
@@ -63,4 +71,5 @@ module.exports = {
   listUsers,
   deleteUser,
   updateUser,
+  getUser,
 };

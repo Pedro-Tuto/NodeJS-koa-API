@@ -35,6 +35,7 @@ router.get("/users", userController.listUsers);
 router.post("/users", userController.createUser);
 router.delete("/users/:nome", userController.deleteUser);
 router.put("/users/:nome", userController.updateUser);
+router.get("/users/:nome", userController.getUser);
 
 koa.use(router.routes()).use(router.allowedMethods());
 

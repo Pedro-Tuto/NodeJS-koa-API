@@ -7,6 +7,18 @@ async function listUsers(ctx) {
   ctx.body = { rows: db.listUsers() };
 }
 
+async function getUser(ctx) {
+  const nome = ctx.params.nome;
+  const user = db.getUser(nome);
+  if (user != null) {
+    ctx.status = 200;
+    ctx.body = user;
+  } else {
+    ctx.status = 404;
+    ctx.body = { error: "Não foi possível encontrar este usuário" };
+  }
+}
+
 //criando uma função para adicionar usuários e passar como parâmetro na rota
 async function createUser(ctx) {
   const user = ctx.request.body;
@@ -52,4 +64,5 @@ module.exports = {
   createUser,
   deleteUser,
   updateUser,
+  getUser,
 };
